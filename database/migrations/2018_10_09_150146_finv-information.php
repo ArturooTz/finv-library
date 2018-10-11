@@ -17,8 +17,8 @@ class FinvInformation extends Migration
             $table->increments('id')->unique();
             $table->string('shortname');
             $table->string('site_url');
-            $table->string('image_url');
-            $table->string('files_url');
+            $table->string('image_url')->nullable();
+            $table->string('files_url')->nullable();
             $table->string('description')->nullable();
             
             $table->timestamps();

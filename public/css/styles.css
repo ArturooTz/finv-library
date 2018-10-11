@@ -1,3 +1,5 @@
+/* SCREEN SIZE VARIABLES */
+/*  */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -19,6 +21,26 @@ body:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.sticky-button {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  line-height: 95px;
+  border-radius: 50%;
+  background: green;
+  font-size: 18px;
+  text-align: center;
+  position: fixed;
+  top: 200px;
+  right: 100px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.sticky-button .fa {
+  font-size: 35px;
+  color: white;
 }
 .flex-center {
   padding-top: 65px;
@@ -51,7 +73,7 @@ body:after {
   font-size: 65px;
   line-height: 49px;
   margin: 0;
-  margin-bottom: 35px;
+  margin-bottom: 95px;
   color: white;
 }
 .content .items-container {
@@ -61,9 +83,24 @@ body:after {
   align-items: center;
 }
 .content .items-container .item {
-  width: 25%;
+  width: 100%;
   height: 225px;
   padding: 0 5px;
+}
+@media (min-width: 768px) {
+  .content .items-container .item {
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .content .items-container .item {
+    width: 33.33%;
+  }
+}
+@media (min-width: 1200px) {
+  .content .items-container .item {
+    width: 25%;
+  }
 }
 .content .items-container .item .card-link {
   transition: 0.2s transform ease;
