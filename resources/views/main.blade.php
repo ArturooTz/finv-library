@@ -21,19 +21,22 @@
         <div class="flex-center">
 		<button type="button" class="sticky-button" data-toggle="modal" data-target="#uploadForm"><i class="fa fa-plus"></i></button>
             <div class="content">
+				
 				<h1>FINV Library 1.0</h1>
                 <div class="items-container">
+				@foreach ($finvList as $finvItem)
 					<div class="item">
-						<a href="#" class="card-link">
+						<a href="#" class="card-link" data-toggle="modal" data-target="#finvInfoModal" style="background-image: url('{{ $finvItem->image_url }}');">
 							<div class="card-wrap">
 								<div class="info-element">
-									<span>URL: www.testsite.com</span>
-									<span>Units: 1, 2, 4, 5</span>
+									<span>URL: {{ $finvItem->site_url }}</span>
 									<span>Preview</span>
 								</div>
 							</div>
 						</a>
 					</div>
+				@endforeach
+					
 				</div>
 			</div>
 		</div>
@@ -85,6 +88,30 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal Information Display -->
+	<div class="modal fade" id="finvInfoModal" tabindex="-1" role="dialog" aria-labelledby="finvInfoModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="finvInfoModalLabel">FINV Information</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="grid-container">
+						<div class="image-div">
+						</div>
+						<div class="info-div">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 
 	</body>
 	<script>

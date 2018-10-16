@@ -15,7 +15,7 @@ body:after {
   top: 0;
   z-index: -1;
   background-color: #0093E9;
-  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+  background-image: linear-gradient(135deg, #FFFFFF 10%, #e0e0e0 100%);
 }
 * {
   -webkit-box-sizing: border-box;
@@ -28,7 +28,7 @@ body:after {
   height: 80px;
   line-height: 95px;
   border-radius: 50%;
-  background: green;
+  background: #F44336;
   font-size: 18px;
   text-align: center;
   position: fixed;
@@ -74,12 +74,12 @@ body:after {
   line-height: 49px;
   margin: 0;
   margin-bottom: 95px;
-  color: white;
+  color: #F44336;
 }
 .content .items-container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 .content .items-container .item {
@@ -106,7 +106,6 @@ body:after {
   transition: 0.2s transform ease;
   display: block;
   height: 100%;
-  background: url("/images/finv.png");
   background-size: cover;
   background-position: top center;
   border: solid 1px #868686;

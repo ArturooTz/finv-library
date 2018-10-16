@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'FinvInfoController@show');
 
 Route::post('/upload-finv', ['uses' => 'FinvInfoController@store', 'as' => 'store']);

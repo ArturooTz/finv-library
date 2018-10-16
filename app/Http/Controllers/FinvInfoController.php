@@ -24,14 +24,14 @@ class FinvInfoController extends Controller
         // Subir imagen de preview al servidor
         $imageFile = $request->file('image-input');
         $imageName = $newFinvId.".".$imageFile->getClientOriginalExtension();
-        $imageURL = 'public/'.$newFinvId.'/'.'files';
+        $imageURL = 'storage/'.$newFinvId.'/'.'files';
         Storage::putFileAs($imageURL, $imageFile, $imageName);
 
         // Subir Archivos para el funcionamiento del FINV
         $finvFiles = $request->file('files-input');
         foreach($finvFiles as $finvFile){
             $finvFileName = $finvFile->getClientOriginalName();
-            $finvFileURL = 'public/'.$newFinvId.'/'.'files';
+            $finvFileURL = 'storage/'.$newFinvId.'/'.'files';
             Storage::putFileAs($finvFileURL, $finvFile, $finvFileName);
         }
 
@@ -41,5 +41,10 @@ class FinvInfoController extends Controller
     
         Session::flash('message', 'success');
         return Redirect::back();
+    }
+
+    public function show(){
+        $finvList = Finv_Information::all();
+        return view('main', ["finvList" => $finvList]);
     }
 }
