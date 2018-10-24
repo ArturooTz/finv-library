@@ -17,7 +17,7 @@
         <title>FINV Library 1.0</title>
 
     </head>
-    <body>
+    <body class="main-body">
         <div class="flex-center">
 		<button type="button" class="sticky-button" data-toggle="modal" data-target="#uploadForm"><i class="fa fa-plus"></i></button>
             <div class="content">
