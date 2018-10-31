@@ -47,4 +47,11 @@ class FinvInfoController extends Controller
         $finvList = Finv_Information::all();
         return view('main', ["finvList" => $finvList]);
     }
+
+    public function display($id){
+        $finv_info = Finv_Information::find($id);
+        return $finv_info;
+        //return json_encode($finv_info);
+        //dd($finv_id);
+    }
 }
