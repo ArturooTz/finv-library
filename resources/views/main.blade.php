@@ -101,7 +101,18 @@
 				<div class="modal-body">
 					<div class="items-container">
 						<div class="info-div">
-
+							<div class="form-group">
+								<h4>Site Name:</h4>
+								<span id="finvSiteName"></span>
+							</div>
+							<div class="form-group">
+								<h4>Site URL:</h4>
+								<a href="" title="" target="_blank" id="finvSiteURL"></a>
+							</div>
+							<div class="form-group">
+								<h4>Description:</h4>
+								<p id="finvSiteDescription"></p>
+							</div>
 						</div>
 						<div class="image-div">
 							<img src="" alt="" id="finvImage">
@@ -136,26 +147,47 @@
 
 
 	<script>
-		$('#myModal').on('hidden.bs.modal', function (e) {
+		$('#finvInfoModal').on('show.bs.modal', function (e) {
 			var attrstyle = $(e.relatedTarget).attr('style'); 
 			var imgurl1 = attrstyle.replace("background-image: url('", "");
 			imgurl1 = imgurl1.replace("');", "");
-			$("#finvImage").attr('src', "/"+imgurl1);
+			$("#finvImage").attr('src', "/"+imgurl1).addClass("loaded-item");
 		})
 		
 		$('#finvInfoModal').on('shown.bs.modal', function (e) {
+			var recipient = $(e.relatedTarget).data('id'); 
 			$.ajax({
 				type:'GET',
 				url:'/get-finv-info/'+recipient,
 				success:function(data){
-				var finv_info_array = data;
+					$("#finvSiteName").html(data.shortname).addClass("loaded-item");
+					$("#finvSiteURL").html(data.site_url).addClass("loaded-item");
+
+					$("#finvSiteURL").attr("href", data.site_url);
+					$("#finvSiteURL").attr("title", data.site_url);
+					if(data.description != ""){
+						if((data.description != null)){
+							$("#finvSiteDescription").html(data.description).addClass("loaded-item");
+						}
+						else{
+							$("#finvSiteDescription").html("No description available.").addClass("loaded-item");
+						}
+					}
+					else{
+						$("#finvSiteDescription").html("No description available.").addClass("loaded-item");
+					}
 				}
 			});
 			var modal = $(this)
 		})
 
 		$('#finvInfoModal').on('hidden.bs.modal', function () {
-			$("#finvImage").attr('src', "");
+			$("#finvImage").attr('src', "").removeClass("loaded-item");
+			$("#finvSiteName").html("").removeClass("loaded-item");
+			$("#finvSiteDescription").html("").removeClass("loaded-item");
+			$("#finvSiteURL").html("").removeClass("loaded-item");
+			$("#finvSiteURL").attr("href", "");
+			$("#finvSiteURL").attr("title", "");
 		})
 	</script>
 
