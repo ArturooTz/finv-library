@@ -26,7 +26,7 @@ class FinvInfoController extends Controller
 		// Subir imagen de preview al servidor
 		$imageFile = $request->file('image-input');
 		$imageName = $newFinvId.".".$imageFile->getClientOriginalExtension();
-		$imageURL = 'storage/'.$newFinvId.'/'.'files';
+		$imageURL = 'public/'.$newFinvId.'/'.'files';
 		@mkdir($imageURL);
 		Storage::putFileAs($imageURL, $imageFile, $imageName);
 
@@ -37,13 +37,13 @@ class FinvInfoController extends Controller
 		$finvFiles = $request->file('files-input');
 		foreach($finvFiles as $finvFile){
 			$finvFileName = $finvFile->getClientOriginalName();
-			$finvFileURL = 'storage/'.$newFinvId.'/'.'files';
+			$finvFileURL = 'public/'.$newFinvId.'/'.'files';
 			Storage::putFileAs($finvFileURL, $finvFile, $finvFileName);
 		}
 		
 		// Actualizar registro del FINV subido con las URLs
-		Finv_Information::where('id','=',$newFinvId)->update(['image_url' => $imageURL."/".$imageName]);
-		Finv_Information::where('id','=',$newFinvId)->update(['files_url' => $finvFileURL]);
+		Finv_Information::where('id','=',$newFinvId)->update(['image_url' => 'storage/'.$newFinvId.'/'.'files'.'/'.$imageName]);
+		Finv_Information::where('id','=',$newFinvId)->update(['files_url' => 'storage/'.$newFinvId.'/'.'files'.'/']);
 		
 		Session::flash('message', 'success');
 		return Redirect::back();
@@ -63,7 +63,7 @@ class FinvInfoController extends Controller
 
 	public function visibilityTest(){
 		//$files = Storage::allFiles('/storage/13/files/13.png');
-		$visibility = Storage::getVisibility('/storage/13/files/13.png');
+		$visibility = Storage::getVisibility('/public/storage/14/files/14.png');
 		dd($visibility);
 	}
 }
