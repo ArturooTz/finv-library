@@ -21,3 +21,4 @@ Route::get('/get-finv-info/{id}', 'FinvInfoController@display');
 
 Route::get('/test1', 'FinvInfoController@visibilityTest');
 
+Route::get('/get-finv-code/{id}', 'FinvInfoController@getFinvSourceCode');

@@ -170,6 +170,15 @@ body:after {
 .main-body #finvInfoModal .modal-body .items-container .image-div img {
   width: 100%;
 }
+.main-body #finvInfoModal .modal-body .items-container .preview-code-div .btn-primary {
+  border-color: #F44336;
+  background-color: #F44336;
+}
+.main-body #finvInfoModal .modal-body .items-container .preview-code-div #indexAspSourceCode,
+.main-body #finvInfoModal .modal-body .items-container .preview-code-div #indexLessSourceCode {
+  max-height: 400px;
+  font-size: 12px;
+}
 .test-body .items-container {
   display: flex;
   flex-flow: column wrap;

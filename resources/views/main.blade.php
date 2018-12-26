@@ -9,11 +9,18 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/sweetalert2.min.css">
+		<link rel="stylesheet" href="css/monokai-sublime.css">
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<script src="/js/sweetalert2.min.js"></script>
-
+		<script src="/js/highlight.pack.js"></script>
+		<script>
+		hljs.configure({
+			tabReplace: '   '
+		})
+		hljs.initHighlightingOnLoad();
+		</script>
         <title>FINV Library 1.0</title>
 
     </head>
@@ -117,6 +124,24 @@
 						<div class="image-div">
 							<img src="" alt="" id="finvImage">
 						</div>
+						<div class="preview-code-div">
+							<div class="form-group">
+								<div>
+									<button id="displaySourceCodeButton" class="btn btn-primary"><i class="fa fa-code"></i> Display Source Code</button>
+									<button id="downloadSourceCodeButton" class="btn btn-primary"><i class="fa fa-download"></i> Download Source Code</button>
+								</div>
+								<hr>
+								<div class="source-code-index">
+									<h4>index.asp</h4>
+									<pre><code id="indexAspSourceCode" class="html"></code></pre>
+								</div>
+								<hr>
+								<div class="source-code-index-less">
+									<h4>main-home.less</h4>
+									<pre><code id="indexLessSourceCode" class="less"></code></pre>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -165,6 +190,8 @@
 
 					$("#finvSiteURL").attr("href", data.site_url);
 					$("#finvSiteURL").attr("title", data.site_url);
+
+					$("#displaySourceCodeButton").attr("item-id", recipient);
 					if(data.description != ""){
 						if((data.description != null)){
 							$("#finvSiteDescription").html(data.description).addClass("loaded-item");
@@ -188,7 +215,31 @@
 			$("#finvSiteURL").html("").removeClass("loaded-item");
 			$("#finvSiteURL").attr("href", "");
 			$("#finvSiteURL").attr("title", "");
+			$("#displaySourceCodeButton").attr("item-id","");
+			$("#indexAspSourceCode").html("");
+			$("#indexLessSourceCode").html("");
 		})
+	</script>
+
+	<script>
+		$("#displaySourceCodeButton" ).click(function() {
+			var recipient = $('#displaySourceCodeButton').attr("item-id");
+			
+			$.ajax({
+				type:'GET',
+				url:'/get-finv-code/'+recipient,
+				success:function(data){
+					$("#indexAspSourceCode").html(document.createTextNode(data["indexASP"]));
+					$("#indexLessSourceCode").html(document.createTextNode(data["indexLESS"]));
+					$('pre code').each(function(i, block) {
+						hljs.highlightBlock(block);
+					});
+				},
+				complete: function () {
+					$('#finvInfoModal').animate({ scrollTop: $('#finvInfoModal .modal-dialog').height() }, 1500);
+				}
+			});
+		});
 	</script>
 
 	<script>

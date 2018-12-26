@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use Storage;
 use App\Finv_Information;
 use Illuminate\Http\Request;
@@ -22,7 +23,6 @@ class FinvInfoController extends Controller
 		]);
 
 
-		//$newFinvId = 10;
 		// Subir imagen de preview al servidor
 		$imageFile = $request->file('image-input');
 		$imageName = $newFinvId.".".$imageFile->getClientOriginalExtension();
@@ -30,9 +30,7 @@ class FinvInfoController extends Controller
 		@mkdir($imageURL);
 		Storage::putFileAs($imageURL, $imageFile, $imageName);
 
-		//dd($imageName);
-		
-		
+
 		// Subir Archivos para el funcionamiento del FINV
 		$finvFiles = $request->file('files-input');
 		foreach($finvFiles as $finvFile){
@@ -57,12 +55,17 @@ class FinvInfoController extends Controller
 	public function display($id){
 		$finv_info = Finv_Information::find($id);
 		return $finv_info;
-		//return json_encode($finv_info);
-		//dd($finv_id);
+	}
+
+	public function getFinvSourceCode($id){
+		$finv_url = Finv_Information::find($id)->files_url;
+		$indexASPcontent = File::get($finv_url.'/'.'index.asp');
+		$indexLESScontent = File::get($finv_url.'/'.'main-home.less');
+		$codeCollection = collect(['indexASP' => $indexASPcontent, 'indexLESS' => $indexLESScontent]);
+		return $codeCollection;
 	}
 
 	public function visibilityTest(){
-		//$files = Storage::allFiles('/storage/13/files/13.png');
 		$visibility = Storage::getVisibility('/public/storage/14/files/14.png');
 		dd($visibility);
 	}
