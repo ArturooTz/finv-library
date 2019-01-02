@@ -69,6 +69,7 @@ class FinvInfoController extends Controller
 	public function downloadSourceCode($id){
 		$finv_url = Finv_Information::find($id)->files_url;
 		$zip = Zip::create($finv_url);
+		dd($finv_url);
 		$zip->add($finv_url.'/'.'index.asp');
 		$zip->add($finv_url.'/'.'main-home.less');
 		return response()->download(public_path($zip));

@@ -14,8 +14,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<script src="/js/sweetalert2.min.js"></script>
-		
-		<script type="text/javascript" src="/js/cshtml.js"></script>
         <title>FINV Library 1.0</title>
 
     </head>
@@ -76,6 +74,7 @@
 						<div class="form-group">
 							<div class="custom-file">
 								<label for="files-input">FINV HTML & CSS Files:</label>
+								<span class="files-example-tag">(index.asp, main-home.less)</span>
 								<div class="custom-file">
 									<input type="file" class="custom-file-input" id="files-input" name="files-input[]" multiple="multiple">
 									<label class="custom-file-label" for="files-input">Choose file</label>
