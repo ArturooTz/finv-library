@@ -174,8 +174,8 @@ body:after {
   border-color: #F44336;
   background-color: #F44336;
 }
-.main-body #finvInfoModal .modal-body .items-container .preview-code-div #indexAspSourceCode,
-.main-body #finvInfoModal .modal-body .items-container .preview-code-div #indexLessSourceCode {
+.main-body #finvInfoModal .modal-body .items-container .preview-code-div .source-code-index > pre,
+.main-body #finvInfoModal .modal-body .items-container .preview-code-div .source-code-index-less > pre {
   max-height: 400px;
   font-size: 12px;
 }

@@ -198,9 +198,11 @@ body{
 						border-color: @index-primary;
 						background-color: @index-primary;
 					}
-					#indexAspSourceCode, #indexLessSourceCode{
-						max-height: 400px;
-						font-size: 12px;
+					.source-code-index, .source-code-index-less{
+						>pre{
+							max-height: 400px;
+							font-size: 12px;
+						}
 					}
 				}
 			}

@@ -19,6 +19,8 @@ Route::post('/upload-finv', ['uses' => 'FinvInfoController@store', 'as' => 'stor
 
 Route::get('/get-finv-info/{id}', 'FinvInfoController@display');
 
-Route::get('/test1', 'FinvInfoController@visibilityTest');
-
 Route::get('/get-finv-code/{id}', 'FinvInfoController@getFinvSourceCode');
+
+Route::get('/download-code/{id}', 'FinvInfoController@downloadSourceCode');
+
+Route::get('/test1', 'FinvInfoController@visibilityTest');
