@@ -262,3 +262,15 @@ body:after {
 #finvInfoModal .loaded-item {
   opacity: 1 !important;
 }
+#finvInfoModal .modal-body .items-container .preview-code-div .form-group .button-container {
+  text-align: center;
+}
+#finvInfoModal .modal-body .items-container .preview-code-div .form-group .button-container button {
+  transition: 0.4s background ease;
+  width: 250px;
+  height: 50px;
+  margin: 0 10px;
+}
+#finvInfoModal .modal-body .items-container .preview-code-div .form-group .button-container button:hover {
+  background: #212529;
+}

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Zip;
+use Zipper;
 use File;
 use Storage;
 use App\Finv_Information;
@@ -68,11 +68,9 @@ class FinvInfoController extends Controller
 
 	public function downloadSourceCode($id){
 		$finv_url = Finv_Information::find($id)->files_url;
-		$zip = Zip::create($finv_url);
-		dd($finv_url);
-		$zip->add($finv_url.'/'.'index.asp');
-		$zip->add($finv_url.'/'.'main-home.less');
-		return response()->download(public_path($zip));
+		$files = glob($finv_url.'/'.'*');
+		Zipper::make($finv_url.'/finv_code.zip')->add($files)->close();
+		return response()->download($finv_url.'/finv_code.zip')->deleteFileAfterSend();
 	}
 
 	public function visibilityTest(){

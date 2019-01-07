@@ -9,8 +9,8 @@
 @screen-xl-min: 1500px;
 /*  */
 
-@index-primary: #F44336;
-
+@index-primary:   #F44336;
+@index-secondary: #212529;
 
 
 body{
@@ -298,6 +298,26 @@ body{
 	}
 	.loaded-item{
 		opacity: 1 !important;
+	}
+	.modal-body{
+		.items-container{
+			.preview-code-div{
+				.form-group{
+					.button-container{
+						text-align: center;
+						button{
+							transition: 0.4s background ease;
+							width: 250px;
+							height: 50px;
+							margin: 0 10px;
+							&:hover{
+								background: @index-secondary;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

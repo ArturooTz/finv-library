@@ -77,7 +77,7 @@
 								<span class="files-example-tag">(index.asp, main-home.less)</span>
 								<div class="custom-file">
 									<input type="file" class="custom-file-input" id="files-input" name="files-input[]" multiple="multiple">
-									<label class="custom-file-label" for="files-input">Choose file</label>
+									<label class="custom-file-label" for="files-input">Choose files</label>
 								</div>
 							</div>
 						</div>
@@ -120,7 +120,7 @@
 						</div>
 						<div class="preview-code-div">
 							<div class="form-group">
-								<div>
+								<div class="button-container">
 									<button id="displaySourceCodeButton" class="btn btn-primary"><i class="fa fa-code"></i> Display Source Code</button>
 									<button id="downloadSourceCodeButton" class="btn btn-primary"><i class="fa fa-download"></i> Download Source Code</button>
 								</div>
@@ -240,7 +240,7 @@
 	<script>
 		$("#downloadSourceCodeButton" ).click(function() {
 			var recipient = $('#downloadSourceCodeButton').attr("item-id");
-			location.href = "/download-code/".recipient;
+			location.href = "/download-code/"+recipient;
 		});
 	</script>
 
