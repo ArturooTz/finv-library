@@ -58,6 +58,15 @@
 						<div class="form-group">
 							<label for="site_shortname">Site shortname:</label>
 							<input type="text" class="form-control" id="site_shortname" placeholder="Enter site shortname" name="shortname">
+							@if ($errors->any())
+								<div class="alert alert-danger">
+									<ul>
+										@foreach ($errors->all() as $error)
+											<li>{{ $error }}</li>
+										@endforeach
+									</ul>
+								</div>
+							@endif
 						</div>
 						<div class="form-group">
 							<label for="site_url">Site URL:</label>

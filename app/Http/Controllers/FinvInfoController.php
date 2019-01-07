@@ -5,15 +5,30 @@ namespace App\Http\Controllers;
 use Zipper;
 use File;
 use Storage;
+use Validator;
 use App\Finv_Information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+
 
 class FinvInfoController extends Controller
 {
 	public function store(Request $request)
 	{
+
+		$validatedData = $request->validate([
+			'shortname' => 'required|max:75',
+			'site_url' => 'required|max:75',
+			'description' => 'max:255',
+			'image-input' => 'required|mimes:jpeg,jpg,png',
+			'files-input' => 'required|mimes:asp,less'
+		]);
+
+		//dd($validatedData);
+
 		// Crear registro de informacion del nuevo FINV
 		$newFinvId = Finv_Information::insertGetId([
 		'shortname'=>request('shortname'),
